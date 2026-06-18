@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ── Light theme ───────────────────────────────── */
+    --background: 240 30% 99%;
+    --foreground: 240 10% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 10%;
+
+    --primary: 262 83% 58%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 6% 96%;
+    --secondary-foreground: 240 10% 12%;
+
+    --muted: 240 6% 95%;
+    --muted-foreground: 240 4% 46%;
+
+    --accent: 262 83% 96%;
+    --accent-foreground: 262 83% 40%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 69% 40%;
+    --warning: 38 92% 50%;
+    --info: 199 89% 48%;
+
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 262 83% 58%;
+
+    /* Apple-Fitness style activity rings */
+    --ring-move: 348 100% 55%;
+    --ring-exercise: 90 80% 50%;
+    --ring-stand: 190 90% 50%;
+
+    --radius: 0.9rem;
+  }
+
+  .dark {
+    /* ── Dark theme ────────────────────────────────── */
+    --background: 240 14% 6%;
+    --foreground: 240 15% 96%;
+
+    --card: 240 12% 9%;
+    --card-foreground: 240 15% 96%;
+
+    --popover: 240 12% 8%;
+    --popover-foreground: 240 15% 96%;
+
+    --primary: 258 90% 70%;
+    --primary-foreground: 240 14% 6%;
+
+    --secondary: 240 8% 16%;
+    --secondary-foreground: 240 15% 96%;
+
+    --muted: 240 8% 14%;
+    --muted-foreground: 240 6% 60%;
+
+    --accent: 258 60% 22%;
+    --accent-foreground: 258 90% 88%;
+
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 60% 50%;
+    --warning: 38 92% 56%;
+    --info: 199 89% 56%;
+
+    --border: 240 8% 18%;
+    --input: 240 8% 20%;
+    --ring: 258 90% 70%;
+
+    --ring-move: 348 100% 60%;
+    --ring-exercise: 90 80% 55%;
+    --ring-stand: 190 90% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    @apply bg-primary/25;
+  }
+  /* Premium thin scrollbars */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 9999px;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+}
+
+@layer components {
+  /* Glassmorphism surface */
+  .glass {
+    @apply bg-card/60 backdrop-blur-xl backdrop-saturate-150 border border-white/10;
+  }
+  .dark .glass {
+    @apply bg-card/50 border-white/[0.06];
+  }
+
+  .glass-strong {
+    @apply bg-card/80 backdrop-blur-2xl border border-white/10 shadow-card;
+  }
+
+  /* Gradient text */
+  .text-gradient {
+    @apply bg-brand-gradient bg-clip-text text-transparent;
+  }
+
+  /* Subtle card hover lift */
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-glow;
+  }
+
+  /* Animated grid background for hero */
+  .bg-grid {
+    background-image: linear-gradient(
+        to right,
+        hsl(var(--border) / 0.5) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, hsl(var(--border) / 0.5) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 50%, transparent 100%);
+  }
+
+  /* Skeleton shimmer */
+  .skeleton {
+    @apply relative overflow-hidden rounded-md bg-muted;
+  }
+  .skeleton::after {
+    @apply absolute inset-0 -translate-x-full animate-shimmer;
+    content: "";
+    background-image: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--foreground) / 0.06),
+      transparent
+    );
+  }
+
+  /* Focus ring helper */
+  .focus-ring {
+    @apply outline-none ring-offset-2 ring-offset-background focus-visible:ring-2 focus-visible:ring-ring;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Aura — AI Fitness Coach",
+  "short_name": "Aura",
+  "description": "Your premium AI health coach for workouts, nutrition and progress.",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "background_color": "#0e0e12",
+  "theme_color": "#0e0e12",
+  "icons": []
+}
